@@ -1,3 +1,77 @@
-body{
-	background-color: ;
+body.index{
+	background-image: url("background.png");	
+}
+
+.container-start{
+	width: 650px;
+	height: 500px;
+	background-color: white;
+	border-radius: 10px;
+	margin-left: 250px;
+	margin-top: 40px;
+}
+
+.container-background{
+	position: relative;
+	width: 900px;
+	height: 800px;
+	background-color: black;
+	z-index: -1;
+	opacity: 0.9;
+	left: 350px;
+	bottom: 450px;
+	border-radius: 10px;
+	z-index: -1;
+}
+
+h1{
+	margin-left: 20px;
+}
+
+h1 > p{
+	display: inline-block;
+}
+
+h1 > p:nth-of-type(1){
+	color: blue;
+}
+
+.container-start > h2{
+	margin-left: 20px;
+}
+
+.start-btn{
+	margin-left: 20px;
+	color: white;
+	text-decoration: none;
+	border-radius: 10px;
+	background-color: #0037ff;
+	padding: 15px;
+	padding-right: 20px;
+	padding-left: 20px;
+}
+
+a:hover{
+	background-color: blue;
+}
+
+.container-start > p{
+	margin-left: 20px;
+	margin-bottom: 75px;
+}
+
+.privacytxt{
+	position: relative;
+	color: white;
+	top: 450px;
+	width: 500px;
+	left: 20px;
+}
+
+.privacytxt2{
+	position: relative;
+	color: white;
+	top: 460px;
+	width: 500px;
+	left: 20px;
 }
