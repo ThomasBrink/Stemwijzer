@@ -1,77 +1,101 @@
-body.index{
+body{
 	background-image: url("background.png");	
 }
 
-.container-start{
-	width: 650px;
+.container{
+	width: 900px;
 	height: 500px;
 	background-color: white;
-	border-radius: 10px;
-	margin-left: 250px;
-	margin-top: 40px;
-}
-
-.container-background{
-	position: relative;
-	width: 900px;
-	height: 800px;
-	background-color: black;
-	z-index: -1;
-	opacity: 0.9;
-	left: 350px;
-	bottom: 450px;
-	border-radius: 10px;
-	z-index: -1;
+	margin: 0 auto;
 }
 
 h1{
-	margin-left: 20px;
+	margin-left: 60px;
+	padding-top: 20px;
+}
+h3{
+	margin-left: 60px;
 }
 
-h1 > p{
-	display: inline-block;
+h3:nth-of-type(1){
+	font-weight: bold;
 }
 
-h1 > p:nth-of-type(1){
-	color: blue;
+h3:nth-of-type(2){
+	color: #28c0f7;
 }
 
-.container-start > h2{
-	margin-left: 20px;
-}
-
-.start-btn{
-	margin-left: 20px;
-	color: white;
+a{
 	text-decoration: none;
-	border-radius: 10px;
-	background-color: #0037ff;
+	background-color: #28c0f7;
 	padding: 15px;
-	padding-right: 20px;
-	padding-left: 20px;
+	padding-left: 25px;
+	padding-right: 25px;
+	border-radius: 5px;
+	color: black;
+	margin-left: 650px;
 }
 
 a:hover{
-	background-color: blue;
+	background-color: #22bbf2;
 }
 
-.container-start > p{
-	margin-left: 20px;
-	margin-bottom: 75px;
+p{
+	margin-left: 60px;
 }
 
-.privacytxt{
+.person{
+	width: 350px;
+}
+
+.lock{
+	width: 350px;
+}
+
+p:nth-of-type(3){
+	width: 780px;
+}
+
+footer{
 	position: relative;
-	color: white;
-	top: 450px;
-	width: 500px;
-	left: 20px;
+	width: 900px;
+	height: 100px;
+	background-color: #28c0f7;
+	top: 30px;
 }
 
-.privacytxt2{
-	position: relative;
+#title{
+	color: #28c0f7;
+}
+
+#statement{
+	width: 700px;
+	margin-left: 60px;
+}
+
+.buttons-container{
+	margin-left: 50px;
+	margin-top: 100px;
+}
+
+button{
+	margin-left: 10px;
+	background-color: black;
 	color: white;
-	top: 460px;
-	width: 500px;
-	left: 20px;
+	border: none;
+	width: 140px;
+	height: 40px;
+	border-radius: 5px;
+}
+
+#eens:hover{
+	background-color: #28c0f7;
+}
+
+#geen:hover{
+	background-color: #28c0f7;
+}
+
+#oneens:hover{
+	background-color: #28c0f7;
 }
