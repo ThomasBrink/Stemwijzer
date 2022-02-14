@@ -3730,18 +3730,30 @@ var subjects = [{
   }
 ];
 
-var test = [{
-  "naam": "Johan",
-  "leeftijd": "15"
-}]
-
 var title = document.getElementById("title");
+var statement = document.getElementById("statement");
 
-var text = subjects["title", 0];
+var eensbtn = document.getElementById("eens");
+var geenbtn = document.getElementById("geen");
+var oneensbtn = document.getElementById("oneens");
 
-console.log(text);
+var Qcount = 0;
 
-title.innerText = text;
+title.innerText = subjects[Qcount]["title"];
+
+statement.innerText = subjects[Qcount]["statement"];
+
+function BtnClicked(opinion){
+    if(opinion != "terug"){
+        Qcount++;
+
+        title.innerText = subjects[Qcount]["title"];
+
+        statement.innerText = subjects[Qcount]["statement"];
+    }
+
+    console.log(opinion);
+}
 
 
-document.write(subjects["title" , 0]);
+

@@ -99,3 +99,11 @@ button{
 #oneens:hover{
 	background-color: #28c0f7;
 }
+
+#terug{
+	margin-top: 10px;
+	color: black;
+	width: 40px;
+	height: 40px;
+	background-color: white;
+}
