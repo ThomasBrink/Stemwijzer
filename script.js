@@ -3736,6 +3736,10 @@ var statement = document.getElementById("statement");
 var eensbtn = document.getElementById("eens");
 var geenbtn = document.getElementById("geen");
 var oneensbtn = document.getElementById("oneens");
+var skip = document.getElementById("skip");
+
+var overzichtbtn = document.getElementById("overzicht");
+var bluebar = document.getElementById("bluebar");
 
 var Qcount = 0;
 
@@ -3745,7 +3749,8 @@ var keuzes = {
     "oneens": 0
     };
 
-var lastchoice; 
+var lastchoice;
+var lenght = 0; 
 
 title.innerText = subjects[Qcount]["title"];
 
@@ -3753,31 +3758,63 @@ statement.innerText = subjects[Qcount]["statement"];
 
 function BtnClicked(opinion){
     if(opinion == "eens" || opinion == "geen" || opinion == "oneens"){
-
       Qcount++;
 
       if(Qcount <= 30){
+        lenght = lenght + 30;
+        bluebar.style.width = lenght + "px";
         keuzes[opinion]++;
       }  
 
        if(Qcount >= 30){
           title.innerText = "Score";
           statement.innerText = "aantal keren eens " + keuzes["eens"] + " aantal keren geen " + keuzes["geen"] + " aantal keren oneens " + keuzes["oneens"];
+
+          overzichtbtn.style.display = "inline-block";
+          eensbtn.style.display = "none";
+          geenbtn.style.display = "none";
+          oneensbtn.style.display = "none";
+          skip.style.display = "none";
+
+
         }
         else{
           title.innerText = subjects[Qcount]["title"];
 
           statement.innerText = subjects[Qcount]["statement"];
-        }  
-    }
-    else if(opinion == "terug"){
+        }
 
+        lastchoice = opinion;  
+    }
+    else if(opinion == "terug" && Qcount > 0){
+        Qcount--;
+        lenght = lenght - 30;
+        bluebar.style.width = lenght + "px";
+
+        title.innerText = subjects[Qcount]["title"];
+
+        statement.innerText = subjects[Qcount]["statement"];
+
+        keuzes[lastchoice]--;
+    }
+    else if(opinion == "skip"){
+      Qcount++;
+
+      lenght = lenght + 30;
+      bluebar.style.width = lenght + "px";
+
+      title.innerText = subjects[Qcount]["title"];
+
+      statement.innerText = subjects[Qcount]["statement"];
+
+      lastchoice = "skipped";
     }
 
     console.log(keuzes["eens"]);
     console.log(keuzes["geen"]);
     console.log(keuzes["oneens"]);
     console.log(opinion);
+    console.log(lastchoice);
 }
 
 

@@ -1,5 +1,6 @@
 body{
-	background-image: url("background.png");	
+	background-image: url("background.png");
+	background-size: cover;	
 }
 
 .container{
@@ -88,7 +89,20 @@ button{
 	border-radius: 5px;
 }
 
+#skip{
+	background-color: white;
+	color: grey;
+	width: 140px;
+	height: 40px;
+	margin-left: 50px;
+}
+
+#skip:hover{
+	background-color: whitesmoke;
+}
+
 #eens:hover{
+	transition: 0.1s;
 	background-color: #28c0f7;
 }
 
@@ -110,4 +124,16 @@ button{
 
 #terug:hover{
 	background-color: lightgrey;
+}
+
+#overzicht{
+	display: none;
+}
+
+#bluebar{
+	width: 0px;
+	height: 10px;
+	background-color: #28c0f7;
+	transition: 0.1s linear;
+	border-radius: 1px;
 }
