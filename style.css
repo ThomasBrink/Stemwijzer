@@ -103,7 +103,11 @@ button{
 #terug{
 	margin-top: 10px;
 	color: black;
-	width: 40px;
+	width: 45px;
 	height: 40px;
 	background-color: white;
+}
+
+#terug:hover{
+	background-color: lightgrey;
 }

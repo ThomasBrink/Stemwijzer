@@ -3739,19 +3739,44 @@ var oneensbtn = document.getElementById("oneens");
 
 var Qcount = 0;
 
+var keuzes = {
+    "eens": 0,
+    "geen": 0,
+    "oneens": 0
+    };
+
+var lastchoice; 
+
 title.innerText = subjects[Qcount]["title"];
 
 statement.innerText = subjects[Qcount]["statement"];
 
 function BtnClicked(opinion){
-    if(opinion != "terug"){
-        Qcount++;
+    if(opinion == "eens" || opinion == "geen" || opinion == "oneens"){
 
-        title.innerText = subjects[Qcount]["title"];
+      Qcount++;
 
-        statement.innerText = subjects[Qcount]["statement"];
+      if(Qcount <= 30){
+        keuzes[opinion]++;
+      }  
+
+       if(Qcount >= 30){
+          title.innerText = "Score";
+          statement.innerText = "aantal keren eens " + keuzes["eens"] + " aantal keren geen " + keuzes["geen"] + " aantal keren oneens " + keuzes["oneens"];
+        }
+        else{
+          title.innerText = subjects[Qcount]["title"];
+
+          statement.innerText = subjects[Qcount]["statement"];
+        }  
+    }
+    else if(opinion == "terug"){
+
     }
 
+    console.log(keuzes["eens"]);
+    console.log(keuzes["geen"]);
+    console.log(keuzes["oneens"]);
     console.log(opinion);
 }
 
