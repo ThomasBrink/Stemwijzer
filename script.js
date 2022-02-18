@@ -3817,5 +3817,31 @@ function BtnClicked(opinion){
     console.log(lastchoice);
 }
 
+function showResults(){
+  var gp = document.getElementById("GrotePartijen");
+  var sp = document.getElementById("SecPartijen");
+  var container2 = document.getElementById("container2");
+  var resultContainer = document.getElementById("resultContainer");
+  var Pcount = 0;
+
+  if(gp.checked == true){
+    parties.forEach(function(){
+
+      pCon = document.createElement("div");
+      pCon.id = "pCon";
+      resultContainer.appendChild(pCon);
+
+      p = document.createElement("p");
+      p.id = "p";
+      p.innerText = parties[Pcount]["name"];
+      pCon.appendChild(p);
+
+      Pcount++;
+    });
+  }
+  if(sp.checked == true){
+    
+  }
+}
 
 

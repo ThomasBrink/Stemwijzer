@@ -3,7 +3,7 @@ body{
 	background-size: cover;	
 }
 
-.container{
+#container{
 	width: 900px;
 	height: 500px;
 	background-color: white;
@@ -126,6 +126,10 @@ button{
 	background-color: lightgrey;
 }
 
+#showOverzicht:hover{
+	background-color: #28c0f7;
+}
+
 #overzicht{
 	display: none;
 }
@@ -136,4 +140,26 @@ button{
 	background-color: #28c0f7;
 	transition: 0.1s linear;
 	border-radius: 1px;
+}
+
+#container2{
+	width: 900px;
+	height: 700px;
+	background-color: white;
+	margin: 0 auto;
+}
+
+#resultContainer{
+	width: 897px;
+	height: 530px;
+}
+
+#pCon{
+	display: inline-block;
+	width: 150px;
+	height: 75px;
+}
+
+#p{
+	display: inline-block;
 }
