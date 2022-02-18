@@ -3730,8 +3730,36 @@ var subjects = [{
   }
 ];
 
+var party = {
+    "VVD": 0,
+    "CDA": 0,
+    "PVV": 0,
+    "D66": 0,
+    "GroenLinks": 0,
+    "SP": 0,
+    "PvdA": 0,
+    "ChristenUnie": 0,
+    "Partij voor de Dieren": 0,
+    "SGP": 0,
+    "DENK": 0,
+    "Forum voor Democratie": 0,
+    "Lokaal in de Kamer": 0,
+    "OndernemersPartij": 0,
+    "VNL": 0,
+    "Nieuwe Wegen": 0,
+    "De Burger Beweging": 0,
+    "Piratenpartij": 0,
+    "Artikel 1": 0,
+    "Libertarische Partij": 0,
+    "50Plus": 0,
+    "Vrijzinnige Partij": 0,
+    "Niet Stemmers": 0
+}
+
 var title = document.getElementById("title");
 var statement = document.getElementById("statement");
+var page1 = document.getElementById("page1");
+var page2 = document.getElementById("page2");
 
 var eensbtn = document.getElementById("eens");
 var geenbtn = document.getElementById("geen");
@@ -3740,42 +3768,45 @@ var skip = document.getElementById("skip");
 
 var overzichtbtn = document.getElementById("overzicht");
 var bluebar = document.getElementById("bluebar");
+var container2 = document.getElementById("container2");
 
 var Qcount = 0;
 
 var keuzes = {
-    "eens": 0,
-    "geen": 0,
-    "oneens": 0
+    "pro": 0,
+    "none": 0,
+    "contra": 0
     };
 
 var lastchoice;
 var lenght = 0; 
+
+var totaalpunten = 0;
 
 title.innerText = subjects[Qcount]["title"];
 
 statement.innerText = subjects[Qcount]["statement"];
 
 function BtnClicked(opinion){
-    if(opinion == "eens" || opinion == "geen" || opinion == "oneens"){
+  var extratel = document.getElementById("extra");
+  var extracon = document.getElementById("extracon");
+    if(opinion == "pro" || opinion == "none" || opinion == "contra"){
       Qcount++;
 
       if(Qcount <= 30){
         lenght = lenght + 30;
         bluebar.style.width = lenght + "px";
         keuzes[opinion]++;
+        totaalpunten++;
+        if(extratel.checked == true){
+          keuzes[opinion]++;
+          totaalpunten++;
+        }
       }  
 
        if(Qcount >= 30){
-          title.innerText = "Score";
-          statement.innerText = "aantal keren eens " + keuzes["eens"] + " aantal keren geen " + keuzes["geen"] + " aantal keren oneens " + keuzes["oneens"];
-
-          overzichtbtn.style.display = "inline-block";
-          eensbtn.style.display = "none";
-          geenbtn.style.display = "none";
-          oneensbtn.style.display = "none";
-          skip.style.display = "none";
-
+          page1.style.display = "none";
+          page2.style.display = "block";
 
         }
         else{
@@ -3810,12 +3841,46 @@ function BtnClicked(opinion){
       lastchoice = "skipped";
     }
 
-    console.log(keuzes["eens"]);
-    console.log(keuzes["geen"]);
-    console.log(keuzes["oneens"]);
-    console.log(opinion);
-    console.log(lastchoice);
+    for(i = 0; i < 23; i++){
+      if(opinion == subjects[i]["parties"][i]["position"] && opinion == "pro"){
+          party[subjects[i]["parties"][i]["name"]]++;
+          if(extratel.checked == true){
+            party[subjects[i]["parties"][i]["name"]]++;
+          }
+      }
+    }
+
+    console.log(party);
 }
+var matchProcent = 0;
+var min
+
+var mProcent = {
+    "VVD": 0,
+    "CDA": 0,
+    "PVV": 0,
+    "D66": 0,
+    "GroenLinks": 0,
+    "SP": 0,
+    "PvdA": 0,
+    "ChristenUnie": 0,
+    "Partij voor de Dieren": 0,
+    "SGP": 0,
+    "DENK": 0,
+    "Forum voor Democratie": 0,
+    "lokaal in de Kamer": 0,
+    "OndernemersPartij": 0,
+    "VNL": 0,
+    "Nieuwe Wegen": 0,
+    "De Burger Beweging": 0,
+    "Piratenpartij": 0,
+    "Artikel 1": 0,
+    "Libertarische Partij": 0,
+    "50Plus": 0,
+    "Vrijzinnige Partij": 0,
+    "Niet Stemmers": 0
+}
+
 
 function showResults(){
   var gp = document.getElementById("GrotePartijen");
@@ -3824,23 +3889,87 @@ function showResults(){
   var resultContainer = document.getElementById("resultContainer");
   var Pcount = 0;
 
-  if(gp.checked == true){
+  matchProcent = party[subjects[0]["parties"][0]["name"]] / totaalpunten * 100;
+
+  min = matchProcent - 100;
+  min = Math.round(min);
+  matchProcent = 100 - min;
+
+  console.log(matchProcent + "%");
+  
+    for(i = 0; i < 23; i++){
+      mProcent[subjects[i]["parties"][i]["name"]] = party[subjects[i]["parties"][i]["name"]] / totaalpunten * 100;
+
+      min = mProcent[subjects[i]["parties"][i]["name"]] - 100;
+      mProcent[subjects[i]["parties"][i]["name"]] = Math.round(mProcent[subjects[i]["parties"][i]["name"]]);
+      mProcent[subjects[i]["parties"][i]["name"]] = 100 - min;
+
+      mProcent[subjects[i]["parties"][i]["name"]] = Math.round(mProcent[subjects[i]["parties"][i]["name"]]);
+
+      mProcent[subjects[i]["parties"][i]["name"]] = mProcent[subjects[i]["parties"][i]["name"]] - 100;
+
+      console.log(subjects[i]["parties"][i]["name"] + " " + mProcent[subjects[i]["parties"][i]["name"]] + "%");
+    }
+
+  if(gp.checked == true && sp.checked == false){
     parties.forEach(function(){
+      if(parties[Pcount]["size"] > 0){
+        pCon = document.createElement("div");
+        pCon.id = "pCon";
+        resultContainer.appendChild(pCon);
 
-      pCon = document.createElement("div");
-      pCon.id = "pCon";
-      resultContainer.appendChild(pCon);
+        p = document.createElement("p");
+        p.id = "p";
+        p.innerText = parties[Pcount]["name"];
+        pCon.appendChild(p);
 
-      p = document.createElement("p");
-      p.id = "p";
-      p.innerText = parties[Pcount]["name"];
-      pCon.appendChild(p);
+        pp = document.createElement("p");
+        pp.id = "pp";
+        pp.innerText = mProcent[parties[Pcount]["name"]] + "%";
+        pCon.appendChild(pp);
+     }
 
       Pcount++;
     });
   }
-  if(sp.checked == true){
-    
+  else if(sp.checked == true && gp.checked == false){
+    parties.forEach(function(){
+      if(parties[Pcount]["size"] == 0){
+        pCon = document.createElement("div");
+        pCon.id = "pCon";
+        resultContainer.appendChild(pCon);
+
+        p = document.createElement("p");
+        p.id = "p";
+        p.innerText = parties[Pcount]["name"];
+        pCon.appendChild(p);
+
+        pp = document.createElement("p");
+        pp.id = "pp";
+        pp.innerText = mProcent[parties[Pcount]["name"]] + "%";
+        pCon.appendChild(pp);
+     }
+
+      Pcount++;
+    });
+  }
+  else if(gp.checked == true && sp.checked == true){
+    parties.forEach(function(){
+        pCon = document.createElement("div");
+        pCon.id = "pCon";
+        resultContainer.appendChild(pCon);
+
+        p = document.createElement("p");
+        p.id = "p";
+        p.innerText = parties[Pcount]["name"];
+        pCon.appendChild(p);
+
+        pp = document.createElement("p");
+        pp.id = "pp";
+        pp.innerText = mProcent[parties[Pcount]["name"]] + "%";
+        pCon.appendChild(pp);
+      Pcount++;
+    });
   }
 }
 

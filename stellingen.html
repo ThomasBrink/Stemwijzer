@@ -8,19 +8,50 @@
 </head>
 <body>
 	<div id="container">
-		<div id="bluebar"></div>
-		<button id="terug" onclick="BtnClicked('terug')">Terug</button>
+		
+			<div id="bluebar"></div>
 
-		<h1 id="title"></h1>
+		<div id="page1">	
+			<button id="terug" onclick="BtnClicked('terug')">Terug</button>
 
-		<h2 id="statement"></h2>
+			<h1 id="title"></h1>
 
-		<div class="buttons-container">
-			<button id="eens" onclick="BtnClicked('eens');">Eens</button>
-			<button id="geen" onclick="BtnClicked('geen');">Geen</button>
-			<button id="oneens" onclick="BtnClicked('oneens');">Oneens</button>
-			<button id="skip" onclick="BtnClicked('skip')">Sla deze vraag over</button>
-			<a id="overzicht" href="overzicht.html">Laat overzicht zien</a>
+			<h2 id="statement"></h2>
+
+			<div class="buttons-container">
+				<button id="eens" onclick="BtnClicked('pro');">Eens</button>
+				<button id="geen" onclick="BtnClicked('none');">Geen</button>
+				<button id="oneens" onclick="BtnClicked('contra');">Oneens</button>
+				<button id="skip" onclick="BtnClicked('skip')">Sla deze vraag over</button>
+
+				<br>
+				<div id="extracon">
+					<input type="checkbox" id="extra" name="extra">
+					<label id="extra" for="extra">Vraag extra meelaten tellen</label>
+				</div>
+
+				<a id="overzicht" href="overzicht.html">Laat overzicht zien</a>
+			</div>
+		</div>
+
+		<div id="page2">
+			<input type="checkbox" id="GrotePartijen" name="GrotePartijen" checked>
+			<label for="GrotePartijen">Laat alleen grote partijen zien</label>
+
+			<br>
+			<br>
+
+			<input type="checkbox" id="SecPartijen" name="SecPartijen" checked>
+			<label for="SecPartijen">Laat alleen seculiere partijen zien</label>
+
+			<br>
+			<br>
+
+			<button id="showOverzicht" onclick="showResults()">Laat resultaten zien</button>
+
+			<div id="resultContainer">
+				
+			</div>
 		</div>
 	</div>
 </body>

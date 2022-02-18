@@ -5,7 +5,7 @@ body{
 
 #container{
 	width: 900px;
-	height: 500px;
+	height: 700px;
 	background-color: white;
 	margin: 0 auto;
 }
@@ -122,6 +122,8 @@ button{
 	background-color: white;
 }
 
+
+
 #terug:hover{
 	background-color: lightgrey;
 }
@@ -162,4 +164,12 @@ button{
 
 #p{
 	display: inline-block;
+}
+
+#pp{
+	display: inline-block;
+}
+
+#page2{
+	display: none;
 }
