@@ -101,16 +101,16 @@ button{
 	background-color: whitesmoke;
 }
 
-#eens:hover{
+#pro:hover{
 	transition: 0.1s;
 	background-color: #28c0f7;
 }
 
-#geen:hover{
+#none:hover{
 	background-color: #28c0f7;
 }
 
-#oneens:hover{
+#contra:hover{
 	background-color: #28c0f7;
 }
 

@@ -3761,9 +3761,9 @@ var statement = document.getElementById("statement");
 var page1 = document.getElementById("page1");
 var page2 = document.getElementById("page2");
 
-var eensbtn = document.getElementById("eens");
-var geenbtn = document.getElementById("geen");
-var oneensbtn = document.getElementById("oneens");
+var pro = document.getElementById("pro");
+var none = document.getElementById("none");
+var contra = document.getElementById("contra");
 var skip = document.getElementById("skip");
 
 var overzichtbtn = document.getElementById("overzicht");
@@ -3792,6 +3792,7 @@ function BtnClicked(opinion){
   var extracon = document.getElementById("extracon");
     if(opinion == "pro" || opinion == "none" || opinion == "contra"){
       Qcount++;
+      
 
       if(Qcount <= 30){
         lenght = lenght + 30;
@@ -3818,6 +3819,7 @@ function BtnClicked(opinion){
         lastchoice = opinion;  
     }
     else if(opinion == "terug" && Qcount > 0){
+        
         Qcount--;
         lenght = lenght - 30;
         bluebar.style.width = lenght + "px";
@@ -3846,6 +3848,17 @@ function BtnClicked(opinion){
           party[subjects[i]["parties"][i]["name"]]++;
           if(extratel.checked == true){
             party[subjects[i]["parties"][i]["name"]]++;
+          }
+      }
+      else if(opinion == subjects[i]["parties"][i]["position"] && opinion == "contra"){
+        if(party[subjects[i]["parties"][i]["name"]] == 0){
+
+        }
+        else{
+          party[subjects[i]["parties"][i]["name"]]--;
+          if(extratel.checked == true){
+              party[subjects[i]["parties"][i]["name"]]--;
+            }
           }
       }
     }
@@ -3909,6 +3922,10 @@ function showResults(){
       mProcent[subjects[i]["parties"][i]["name"]] = mProcent[subjects[i]["parties"][i]["name"]] - 100;
 
       console.log(subjects[i]["parties"][i]["name"] + " " + mProcent[subjects[i]["parties"][i]["name"]] + "%");
+
+      if(mProcent[subjects[i]["parties"][i]["name"]] < 0){
+        mProcent[subjects[i]["parties"][i]["name"]] = 0;
+      }
     }
 
   if(gp.checked == true && sp.checked == false){
