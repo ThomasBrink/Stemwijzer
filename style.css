@@ -89,6 +89,81 @@ button{
 	border-radius: 5px;
 }
 
+.pro{
+	margin-left: 10px;
+	background-color: black;
+	color: white;
+	border: none;
+	width: 140px;
+	height: 40px;
+	border-radius: 5px;
+}
+
+.pro:hover{
+	transition: 0.1s;
+	background-color: #28c0f7;
+}
+
+.problue{
+	margin-left: 10px;
+	background-color: #28c0f7;
+	color: white;
+	border: none;
+	width: 140px;
+	height: 40px;
+	border-radius: 5px;
+}
+
+.contra{
+	margin-left: 10px;
+	background-color: black;
+	color: white;
+	border: none;
+	width: 140px;
+	height: 40px;
+	border-radius: 5px;
+}
+
+.contra:hover{
+	transition: 0.1s;
+	background-color: #28c0f7;
+}
+
+.contrablue{
+	margin-left: 10px;
+	background-color: #28c0f7;
+	color: white;
+	border: none;
+	width: 140px;
+	height: 40px;
+	border-radius: 5px;
+}
+
+.none{
+	margin-left: 10px;
+	background-color: black;
+	color: white;
+	border: none;
+	width: 140px;
+	height: 40px;
+	border-radius: 5px;
+}
+
+.none:hover{
+	transition: 0.1s;
+	background-color: #28c0f7;
+}
+
+.noneblue{
+	margin-left: 10px;
+	background-color: #28c0f7;
+	color: white;
+	border: none;
+	width: 140px;
+	height: 40px;
+	border-radius: 5px;
+}
+
 #skip{
 	background-color: white;
 	color: grey;
@@ -99,11 +174,6 @@ button{
 
 #skip:hover{
 	background-color: whitesmoke;
-}
-
-#pro:hover{
-	transition: 0.1s;
-	background-color: #28c0f7;
 }
 
 #none:hover{
@@ -173,3 +243,5 @@ button{
 #page2{
 	display: none;
 }
+
+

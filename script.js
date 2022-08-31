@@ -3816,9 +3816,13 @@ function BtnClicked(opinion){
           statement.innerText = subjects[Qcount]["statement"];
         }
 
+        setClasses();
+        
         lastchoice = opinion;  
+
     }
     else if(opinion == "terug" && Qcount > 0){
+        // !
         
         Qcount--;
         lenght = lenght - 30;
@@ -3829,6 +3833,16 @@ function BtnClicked(opinion){
         statement.innerText = subjects[Qcount]["statement"];
 
         keuzes[lastchoice]--;
+        // !
+        if(lastchoice == "pro"){
+          pro.classList.add('problue');
+        }
+        else if(lastchoice == "contra"){
+          contra.classList.add('contrablue');
+        }
+        else if(lastchoice == "none"){
+          none.classList.add('noneblue');
+        }
     }
     else if(opinion == "skip"){
       Qcount++;
@@ -3839,6 +3853,8 @@ function BtnClicked(opinion){
       title.innerText = subjects[Qcount]["title"];
 
       statement.innerText = subjects[Qcount]["statement"];
+
+      setClasses();
 
       lastchoice = "skipped";
     }
@@ -3988,6 +4004,17 @@ function showResults(){
       Pcount++;
     });
   }
+}
+
+function setClasses(){
+  pro.classList.remove("problue");
+  pro.classList.add("pro");
+
+  none.classList.remove("noneblue");
+  none.classList.add("none");
+
+  contra.classList.remove("contrablue");
+  contra.classList.add("contra");
 }
 
 
