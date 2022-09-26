@@ -127,7 +127,7 @@ var parties = [{
   }
 
 ];
-
+//subjects[i]["parties"][i]["position"];
 var subjects = [{
     "title": "Bindend referendum",
     "statement": "Er moet een bindend referendum komen, waarmee burgers door het parlement aangenomen wetten kunnen tegenhouden.",
@@ -3730,7 +3730,135 @@ var subjects = [{
   }
 ];
 
-var party = {
+var keuzesSave = {
+    "statement": [{
+        "vraag": "0",
+        "opinion": "",
+      },
+      {
+        "vraag": "0",
+        "opinion": "",
+      },
+      {
+        "vraag": "0",
+        "opinion": "",
+      },
+      {
+        "vraag": "0",
+        "opinion": "",
+      },
+      {
+        "vraag": "0",
+        "opinion": "",
+      },
+      {
+        "vraag": "0",
+        "opinion": "",
+      },
+      {
+        "vraag": "0",
+        "opinion": "",
+      },
+      {
+        "vraag": "0",
+        "opinion": "",
+      },
+      {
+        "vraag": "0",
+        "opinion": "",
+      },
+      {
+        "vraag": "0",
+        "opinion": "",
+      },
+      {
+        "vraag": "0",
+        "opinion": "",
+      },
+      {
+        "vraag": "0",
+        "opinion": "",
+      },
+      {
+        "vraag": "0",
+        "opinion": "",
+      },
+      {
+        "vraag": "0",
+        "opinion": "",
+      },
+      {
+        "vraag": "0",
+        "opinion": "",
+      },
+      {
+        "vraag": "0",
+        "opinion": "",
+      },
+      {
+        "vraag": "0",
+        "opinion": "",
+      },
+      {
+        "vraag": "0",
+        "opinion": "",
+      },
+      {
+        "vraag": "0",
+        "opinion": "",
+      },
+      {
+        "vraag": "0",
+        "opinion": "",
+      },
+      {
+        "vraag": "0",
+        "opinion": "",
+      },
+      {
+        "vraag": "0",
+        "opinion": "",
+      },
+      {
+        "vraag": "0",
+        "opinion": "",
+      },
+      {
+        "vraag": "0",
+        "opinion": "",
+      },
+      {
+        "vraag": "0",
+        "opinion": "",
+      },
+      {
+        "vraag": "0",
+        "opinion": "",
+      },
+      {
+        "vraag": "0",
+        "opinion": "",
+      },
+      {
+        "vraag": "0",
+        "opinion": "",
+      },
+      {
+        "vraag": "0",
+        "opinion": "",
+      },
+      {
+        "vraag": "0",
+        "opinion": "",
+      },
+      {
+        "vraag": "0",
+        "opinion": "",
+      }
+      ]
+  };
+
+var party = {//houdt punten bij voor partijen
     "VVD": 0,
     "CDA": 0,
     "PVV": 0,
@@ -3755,17 +3883,19 @@ var party = {
     "Vrijzinnige Partij": 0,
     "Niet Stemmers": 0
 }
-
+//haalt alle html elementen op voor de styling 
 var title = document.getElementById("title");
 var statement = document.getElementById("statement");
 var page1 = document.getElementById("page1");
 var page2 = document.getElementById("page2");
+var extraPage = document.getElementById("extraPage");
 
 var pro = document.getElementById("pro");
 var none = document.getElementById("none");
 var contra = document.getElementById("contra");
 var skip = document.getElementById("skip");
 
+var container = document.getElementById("container");
 var overzichtbtn = document.getElementById("overzicht");
 var bluebar = document.getElementById("bluebar");
 var container2 = document.getElementById("container2");
@@ -3778,37 +3908,37 @@ var keuzes = {
     "contra": 0
     };
 
-var lastchoice;
 var lenght = 0; 
 
 var totaalpunten = 0;
+
+var SaveCount = 0;
 
 title.innerText = subjects[Qcount]["title"];
 
 statement.innerText = subjects[Qcount]["statement"];
 
 function BtnClicked(opinion){
-  var extratel = document.getElementById("extra");
-  var extracon = document.getElementById("extracon");
     if(opinion == "pro" || opinion == "none" || opinion == "contra"){
       Qcount++;
       
 
       if(Qcount <= 30){
-        lenght = lenght + 30;
-        bluebar.style.width = lenght + "px";
+        lenght = lenght + 30;//styling bluebar
+        bluebar.style.width = lenght + "px";//styling blue bar
         keuzes[opinion]++;
         totaalpunten++;
-        if(extratel.checked == true){
-          keuzes[opinion]++;
-          totaalpunten++;
-        }
+
+        keuzesSave["statement"][SaveCount]["vraag"] = subjects[SaveCount]["title"];
+        keuzesSave['statement'][SaveCount]['opinion'] = opinion;
+
+        SaveCount++;
       }  
 
-       if(Qcount >= 30){
+       if(Qcount >= 30){//laaste vraag beantwoord
           page1.style.display = "none";
+          showExtraPage();
           page2.style.display = "block";
-
         }
         else{
           title.innerText = subjects[Qcount]["title"];
@@ -3817,13 +3947,11 @@ function BtnClicked(opinion){
         }
 
         setClasses();
-        
-        lastchoice = opinion;  
 
     }
-    else if(opinion == "terug" && Qcount > 0){
-        // !
-        
+    else if(opinion == "terug" && Qcount > 0){//vraag terug
+        setClasses();
+        SaveCount--;
         Qcount--;
         lenght = lenght - 30;
         bluebar.style.width = lenght + "px";
@@ -3832,59 +3960,47 @@ function BtnClicked(opinion){
 
         statement.innerText = subjects[Qcount]["statement"];
 
-        keuzes[lastchoice]--;
-        // !
-        if(lastchoice == "pro"){
+        if(keuzesSave['statement'][Qcount]['opinion'] == "pro"){
           pro.classList.add('problue');
         }
-        else if(lastchoice == "contra"){
+        else if(keuzesSave['statement'][Qcount]['opinion'] == "contra"){
           contra.classList.add('contrablue');
         }
-        else if(lastchoice == "none"){
+        else if(keuzesSave['statement'][Qcount]['opinion'] == "none"){
           none.classList.add('noneblue');
         }
     }
-    else if(opinion == "skip"){
-      Qcount++;
+    else if(opinion == "skip"){//vraag overslaan maakt bluebar kleiner pas vraag aan
+        Qcount++;
 
-      lenght = lenght + 30;
-      bluebar.style.width = lenght + "px";
+        lenght = lenght + 30;
+        bluebar.style.width = lenght + "px";
 
-      title.innerText = subjects[Qcount]["title"];
+        title.innerText = subjects[Qcount]["title"];
 
-      statement.innerText = subjects[Qcount]["statement"];
+        statement.innerText = subjects[Qcount]["statement"];
 
-      setClasses();
-
-      lastchoice = "skipped";
+        setClasses();
     }
 
-    for(i = 0; i < 23; i++){
-      if(opinion == subjects[i]["parties"][i]["position"] && opinion == "pro"){
+    for(i = 0; i < 23; i++){//23 parties
+      if(opinion == subjects[i]["parties"][i]["position"] && opinion == "pro"){//als je keuze overeen komt met de keuze van de andere partij dan komt er een puntje bij
           party[subjects[i]["parties"][i]["name"]]++;
-          if(extratel.checked == true){
-            party[subjects[i]["parties"][i]["name"]]++;
-          }
       }
-      else if(opinion == subjects[i]["parties"][i]["position"] && opinion == "contra"){
+      else if(opinion == subjects[i]["parties"][i]["position"] && opinion == "contra"){////als je keuze overeen komt met de keuze van de andere partij dan gaat er een puntje af
         if(party[subjects[i]["parties"][i]["name"]] == 0){
-
+          party[subjects[i]["parties"][i]["name"]]--;
         }
         else{
-          party[subjects[i]["parties"][i]["name"]]--;
-          if(extratel.checked == true){
-              party[subjects[i]["parties"][i]["name"]]--;
-            }
-          }
+
+        }
       }
     }
-
-    console.log(party);
 }
 var matchProcent = 0;
 var min
 
-var mProcent = {
+var mProcent = {//houdt berkende procent bij voor bijbehoorende partijen
     "VVD": 0,
     "CDA": 0,
     "PVV": 0,
@@ -3911,7 +4027,11 @@ var mProcent = {
 }
 
 
-function showResults(){
+function showResults(){//haalt de vragen van het scherm en laat extraPage zien 
+  extraPage.style.display = "none";
+  container.style.height = "900px";
+  document.getElementById("showOverzicht").style.display = "none";
+
   var gp = document.getElementById("GrotePartijen");
   var sp = document.getElementById("SecPartijen");
   var container2 = document.getElementById("container2");
@@ -3921,12 +4041,10 @@ function showResults(){
   matchProcent = party[subjects[0]["parties"][0]["name"]] / totaalpunten * 100;
 
   min = matchProcent - 100;
-  min = Math.round(min);
+  min = Math.round(min);//rond comma getallen af
   matchProcent = 100 - min;
-
-  console.log(matchProcent + "%");
   
-    for(i = 0; i < 23; i++){
+    for(i = 0; i < 23; i++){//berekent de procenten
       mProcent[subjects[i]["parties"][i]["name"]] = party[subjects[i]["parties"][i]["name"]] / totaalpunten * 100;
 
       min = mProcent[subjects[i]["parties"][i]["name"]] - 100;
@@ -3936,15 +4054,16 @@ function showResults(){
       mProcent[subjects[i]["parties"][i]["name"]] = Math.round(mProcent[subjects[i]["parties"][i]["name"]]);
 
       mProcent[subjects[i]["parties"][i]["name"]] = mProcent[subjects[i]["parties"][i]["name"]] - 100;
-
-      console.log(subjects[i]["parties"][i]["name"] + " " + mProcent[subjects[i]["parties"][i]["name"]] + "%");
-
+      //
       if(mProcent[subjects[i]["parties"][i]["name"]] < 0){
         mProcent[subjects[i]["parties"][i]["name"]] = 0;
       }
+      if(mProcent[subjects[i]["parties"][i]["name"]] > 100){
+        mProcent[subjects[i]["parties"][i]["name"]] = 100;
+      }
     }
 
-  if(gp.checked == true && sp.checked == false){
+  if(gp.checked == true && sp.checked == false){//checked of alleen sp of gp partijen moeten weergegeven
     parties.forEach(function(){
       if(parties[Pcount]["size"] > 0){
         pCon = document.createElement("div");
@@ -3965,7 +4084,7 @@ function showResults(){
       Pcount++;
     });
   }
-  else if(sp.checked == true && gp.checked == false){
+  else if(sp.checked == true && gp.checked == false){//checked welke partijen de gebruiker heeft geselecteerd
     parties.forEach(function(){
       if(parties[Pcount]["size"] == 0){
         pCon = document.createElement("div");
@@ -3986,7 +4105,7 @@ function showResults(){
       Pcount++;
     });
   }
-  else if(gp.checked == true && sp.checked == true){
+  else if(gp.checked == true && sp.checked == true){//checked welke partijen de gebruiker heeft geselecteerd
     parties.forEach(function(){
         pCon = document.createElement("div");
         pCon.id = "pCon";
@@ -4006,7 +4125,7 @@ function showResults(){
   }
 }
 
-function setClasses(){
+function setClasses(){//Zet alle classes naar default styling
   pro.classList.remove("problue");
   pro.classList.add("pro");
 
@@ -4017,4 +4136,48 @@ function setClasses(){
   contra.classList.add("contra");
 }
 
+function showExtraPage(){//laat pagina met extra punten toekennen zien
+  var numTest = 0;
+  var checkbox = ["","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","",""];
 
+  container.style.height = "2500px";
+
+  subjects.forEach(function(){//maakt voor elke vraag een checkbox aan met value van de vraag
+    testtext = document.createElement("p");
+    testtext.innerText = subjects[numTest]["title"];
+    extraPage.appendChild(testtext);
+
+    checkbox[numTest] = document.createElement("INPUT")
+    checkbox[numTest].setAttribute("type", "checkbox");
+    checkbox[numTest].value = subjects[numTest]["title"];
+    extraPage.appendChild(checkbox[numTest]);
+
+    numTest++;
+
+  });
+
+  extraNextBtn = document.createElement("button");
+  extraNextBtn.classList.add("extraBtn");
+  extraNextBtn.innerText = "Laat resultaten zien";
+  extraPage.appendChild(extraNextBtn);
+
+  extraNextBtn.onclick = function(){//voegt punten toe aan de final punten telling
+    for(a = 0; a<30; a++){
+        if(checkbox[a].checked == true){
+          
+          for(i = 0; i < 23; i++){//23 parties
+            if(keuzesSave['statement'][a]['opinion'] == subjects[i]["parties"][i]["position"] && keuzesSave['statement'][a]['opinion'] == "pro"){
+              party[subjects[i]["parties"][i]["name"]]++;
+            }
+            else if(keuzesSave['statement'][a]['opinion'] == subjects[i]["parties"][i]["position"] && keuzesSave['statement'][a]['opinion'] == "contra"){
+              party[subjects[i]["parties"][i]["name"]]--
+            }
+            else{
+              
+            }
+          }
+        }
+      }
+      showResults();//laat match percentage zien van de partijen
+    };
+}
